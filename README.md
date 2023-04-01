@@ -15,8 +15,8 @@
 2. 使用 Maven 编译和运行项目，或使用您喜欢的 IDE 导入项目并运行。
 
 ```bash
-$ git clone https://github.com/Jingzhenzxz/JianBingJavaJichu.git
-$ cd JianBingJavaJichu
+$ git clone https://github.com/yourusername/UserSystem.git
+$ cd UserSystem
 $ mvn compile exec:java -Dexec.mainClass="com.wuan.UserSystem"
 ```
 3. 按照命令行提示输入相关信息进行操作。
