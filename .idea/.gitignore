@@ -1,0 +1,7 @@
+# 默认忽略的文件
+#/shelf/
+#/workspace.xml
+# 有 .idea/ 就不需要上面两个了，它们俩都是 .idea/ 的子文件或子文件夹。
+target/
+.idea/
+users.xml
