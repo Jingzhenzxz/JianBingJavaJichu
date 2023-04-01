@@ -1,6 +1,6 @@
 # XML Login Register
 
-一个使用 Java 和 dom4j/XML 实现的简易命令行登录注册系统。
+一个使用 Java 和 dom4j/XML 实现的简易命令行登录注册系统。（测试代码还没写好）
 
 ## 功能
 
