@@ -43,8 +43,8 @@ $ mvn compile exec:java -Dexec.mainClass="com.wuan.UserSystem"
 
 ## 依赖
 
-- Java 8+
+- Java 8
 - Maven
-- dom4j 2.1.3
+- dom4j 2.1.4
 
 现在您可以根据修改后的 README.md 更新您的项目文档。
