@@ -1,53 +1,78 @@
 package com.wuan;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.PrintStream;
+import java.nio.file.Path;
+import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class UserSystemTest {
+class UserServiceTest {
 
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
+    @TempDir
+    Path tempDir;
 
-    @Before
-    public void setUp() {
-        System.setOut(new PrintStream(outContent));
-    }
+    UserService userService;
 
-    @After
-    public void tearDown() {
-        System.setOut(originalOut);
-    }
-
-    @Test
-    public void testRegisterUser() {
-        String testUsername = "testuser";
-        String testPassword = "Test@123";
-
-        UserSystem.registerUser(testUsername, testPassword);
-
-        String expectedOutput = "User registered successfully.\n";
-        assertEquals(expectedOutput, outContent.toString());
+    @BeforeEach
+    void setUp() {
+        File usersFile = new File(tempDir.toFile(), UserService.DEFAULT_FILE_NAME);
+        userService = new UserService(usersFile.getAbsolutePath());
+        System.setProperty("user.dir", tempDir.toString());
     }
 
     @Test
-    public void testRegisterUserWithExistingUsername() {
-        String testUsername = "testuser";
-        String testPassword = "Test@123";
-
-        UserSystem.registerUser(testUsername, testPassword);
-        outContent.reset();
-
-        UserSystem.registerUser(testUsername, testPassword);
-        String expectedOutput = "Username already exists. Please try again.\n";
-        assertEquals(expectedOutput, outContent.toString());
+    void testUsernameExists() {
+        String username = "testuser";
+        assertFalse(userService.usernameExists(username));
+        userService.registerUser(username, "P@ssw0rd!");
+        assertTrue(userService.usernameExists(username));
     }
 
-    // 更多测试方法...
+    @Test
+    void testPasswordIsValidate() {
+        assertFalse(userService.passwordIsValidate("12345"));
+        assertFalse(userService.passwordIsValidate("password"));
+        assertFalse(userService.passwordIsValidate("P@ss"));
+        assertTrue(userService.passwordIsValidate("P@ssw0rd!"));
+    }
+
+    @Test
+    void testRegisterUser() {
+        String username = "testuser";
+        String password = "P@ssw0rd!";
+        assertFalse(userService.usernameExists(username));
+        userService.registerUser(username, password);
+        assertTrue(userService.usernameExists(username));
+    }
+
+    @Test
+    void testLoginUser() {
+        String username = "testuser";
+        String password = "P@ssw0rd!";
+        assertFalse(userService.loginUser(username, password));
+        userService.registerUser(username, password);
+        assertTrue(userService.loginUser(username, password));
+    }
+
+    @Test
+    void testListUsers() {
+        String username1 = "testuser1";
+        String username2 = "testuser2";
+        String password = "P@ssw0rd!";
+
+        List<String> users = userService.listUsers();
+        assertEquals(0, users.size());
+
+        userService.registerUser(username1, password);
+        userService.registerUser(username2, password);
+        users = userService.listUsers();
+        assertEquals(2, users.size());
+        assertTrue(users.contains(username1));
+        assertTrue(users.contains(username2));
+    }
 }
+
