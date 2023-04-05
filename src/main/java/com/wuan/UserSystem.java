@@ -29,7 +29,8 @@ public class UserSystem {
                     String password = scanner.nextLine().trim();
                     while (!userService.passwordIsValidate(password)) {
                         System.out.println("User registered failed." +
-                                " Password must contain at least one letter, one digit, and one special character" +
+                                " Password must contain at least one letter, one digit, and" +
+                                " one special character" +
                                 " and be at least 6 characters long.");
                         password = scanner.nextLine().trim();
                     }

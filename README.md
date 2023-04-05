@@ -17,7 +17,7 @@
 ```bash
 $ git clone https://github.com/Jingzhenzxz/JianBingJavaJichu.git
 $ cd JianBingJavaJichu
-$ mvn compile exec:java -Dexec.mainClass="com.wuan.UserSystem"
+$ mvn compile exec:java -D"exec.mainClass"="com.wuan.UserSystem"
 ```
 3. 按照命令行提示输入相关信息进行操作。
 
