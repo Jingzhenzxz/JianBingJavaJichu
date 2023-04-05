@@ -41,7 +41,19 @@ public class UserSystem {
                     String usernameLogin = scanner.nextLine().trim();
                     System.out.println("Please enter your password:");
                     String passwordLogin = scanner.nextLine().trim();
-                    userService.loginUser(usernameLogin, passwordLogin);
+
+                    boolean[] loginResult = userService.loginUser(usernameLogin, passwordLogin);
+                    boolean foundUser = loginResult[0];
+                    boolean foundPassword = loginResult[1];
+                    if (foundUser) {
+                        if (foundPassword) {
+                            System.out.println("Logged in successfully.");
+                        } else {
+                            System.out.println("Invalid password.");
+                        }
+                    } else {
+                        System.out.println("Username doesn't exist.");
+                    }
                     break;
                 case "3":
                     List<String> userList = userService.listUsers();

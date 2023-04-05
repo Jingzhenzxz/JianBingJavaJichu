@@ -72,35 +72,33 @@ public class UserService {
     }
 
 
-    public boolean loginUser(String username, String password) {
-        boolean successful = false;
+    public boolean[] loginUser(String username, String password) {
+        boolean foundUser = false;
+        boolean foundPassword = false;
         try {
             Document document = getOrCreateDocument();
             Element usersElement = document.getRootElement();
 
             List<Element> userElements = usersElement.elements("user");
 
-            boolean found = false;
+
             for (Element userElement : userElements) {
                 String storedUsername = userElement.element("username").getText();
                 String storedPassword = userElement.element("password").getText();
 
-                if (username.equals(storedUsername) && password.equals(storedPassword)) {
-                    found = true;
+                if (username.equals(storedUsername)) {
+                    foundUser = true;
+                    if (password.equals(storedPassword)) {
+                        foundPassword = true;
+                    }
                     break;
                 }
-            }
 
-            if (found) {
-                System.out.println("Logged in successfully.");
-                successful = true;
-            } else {
-                System.out.println("Invalid username or password.");
             }
         } catch (DocumentException e) {
             System.out.println("Error: " + e.getMessage());
         }
-        return successful;
+        return new boolean[]{foundUser, foundPassword};
     }
 
     public List<String> listUsers() {

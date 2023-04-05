@@ -50,12 +50,21 @@ class UserServiceTest {
     }
 
     @Test
-    void testLoginUser() {
+    void testLoginUsername() {
         String username = "testuser";
         String password = "P@ssw0rd!";
-        assertFalse(userService.loginUser(username, password));
+        assertFalse(userService.loginUser(username, password)[0]);
         userService.registerUser(username, password);
-        assertTrue(userService.loginUser(username, password));
+        assertTrue(userService.loginUser(username, password)[0]);
+    }
+
+    @Test
+    void testLoginUserPassword() {
+        String username = "testuser";
+        String password = "P@ssw0rd!";
+        String wrongPassword = "P@ssw0rd.";
+        userService.registerUser(username, password);
+        assertFalse(userService.loginUser(username, wrongPassword)[1]);
     }
 
     @Test
