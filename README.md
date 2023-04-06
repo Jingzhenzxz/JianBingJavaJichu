@@ -31,7 +31,7 @@ $ mvn compile exec:java -D"exec.mainClass"="com.wuan.UserSystem"
 "Logged in successfully."；如果密码不正确，则输出"Invalid password."。如果用户名不存在，则输出”Username doesn't exist."。
 4. 如果是查询，即调用 listUsers 方法，则程序会遍历 users.xml 文件中的所有 user，并返回一个 ArrayList<String>，该 ArrayList 
 包含每个 user 的 username。（该 ArrayList 可能为空）
-5. 如果是退出，则把标志位 running 改成 false，这样就可以跳出 while 循环了。
+5. 如果是退出，则把标志位 running 改成 false，这样就可以跳出 while 循环从而结束程序了。
 
 ## 依赖
 
