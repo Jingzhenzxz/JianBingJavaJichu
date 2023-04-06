@@ -9,8 +9,10 @@ import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -135,7 +137,7 @@ public class UserService {
 
     private void saveDocument(Document document) throws IOException {
         OutputFormat format = OutputFormat.createPrettyPrint();
-        XMLWriter writer = new XMLWriter(new FileWriter(fileName), format);
+        XMLWriter writer = new XMLWriter(Files.newBufferedWriter(Paths.get(fileName), StandardCharsets.UTF_8), format);
         writer.write(document);
         writer.close();
     }

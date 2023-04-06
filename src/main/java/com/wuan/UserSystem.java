@@ -1,5 +1,6 @@
 package com.wuan;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,7 +8,7 @@ public class UserSystem {
     private static final UserService userService = new UserService();
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8.name());
         boolean running = true;
 
         while (running) {
@@ -31,7 +32,8 @@ public class UserSystem {
                         System.out.println("User registered failed." +
                                 " Password must contain at least one letter, one digit, and" +
                                 " one special character" +
-                                " and be at least 6 characters long.");
+                                " and be at least 6 characters long." +
+                                " Please enter your password again.");
                         password = scanner.nextLine().trim();
                     }
 
