@@ -29,7 +29,9 @@ $ mvn compile exec:java -D"exec.mainClass"="com.wuan.UserSystem"
 “Username already exists. Please try again.”，如果有效，则调用 registerUser 方法进行注册。
 3. 如果是登录，则提示输入用户名和密码，收到这两个字符串后先检查用户名是否存在，如果存在，则检查密码是否正确，如果密码也正确，则输出
 "Logged in successfully."；如果密码不正确，则输出"Invalid password."。如果用户名不存在，则输出”Username doesn't exist."。
-4. 
+4. 如果是查询，即调用 listUsers 方法，则程序会遍历 users.xml 文件中的所有 user，并返回一个 ArrayList<String>，该 ArrayList 
+包含每个 user 的 username。（该 ArrayList 可能为空）
+5. 如果是退出，则直接把标志位 running 改成 false 就可以跳出 while 循环了。
 
 ## 依赖
 
