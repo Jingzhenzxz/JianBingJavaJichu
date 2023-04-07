@@ -12,13 +12,17 @@
 ## 用法
 
 1. 克隆本仓库到本地。
-2. 使用 Maven 编译和运行项目，或使用您喜欢的 IDE 导入项目并运行 UserSystem 类。
+    
+    ```bash
+    $ git clone https://github.com/Jingzhenzxz/JianBingJavaJichu.git
+    ```
 
-```bash
-$ git clone https://github.com/Jingzhenzxz/JianBingJavaJichu.git
-$ cd JianBingJavaJichu
-$ mvn compile exec:java -D"exec.mainClass"="com.wuan.UserSystem"
-```
+2. 使用 Maven 编译和运行项目，或使用您喜欢的 IDE 导入项目并运行 UserSystem 类。
+        
+   ```bash
+   $ cd JianBingJavaJichu
+   $ mvn compile exec:java -D"exec.mainClass"="com.wuan.UserSystem"
+   ```
 3. 按照命令行提示输入相关信息进行操作。
 
 ## 设计思路
